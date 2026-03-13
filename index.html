@@ -2,23 +2,27 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <title>Orçamento pessoal</title>
+    <!-- ✅ VIEWPORT MOBILE OBRIGATÓRIO -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Orçamento Pessoal - Mobile OK</title>
 
-    <!-- Bootstrap 5.3 CSS (apenas 1x) -->
+    <!-- Bootstrap 5.3 CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     
     <!-- Font Awesome 6 -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     
-    <script src="app.js"></script>
+    <!-- Carrega app.js no final para performance -->
+    <script src="app.js" defer></script>
 </head>
 
 <body>
-    <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg navbar-dark bg-primary mb-5">
-        <div class="container">
+    <!-- Navbar mobile perfeita -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary mb-3 mb-lg-5 px-3">
+        <div class="container-fluid">
             <a class="navbar-brand" href="#">
-                <img src="logo.png" width="50" height="35" alt="Orçamento pessoal">
+                <img src="logo.png" width="45" height="32" class="me-2" alt="Orçamento pessoal">
+                Orçamento
             </a>
             <button class="navbar-toggler" type="button" 
                     data-bs-toggle="collapse" 
@@ -32,34 +36,41 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto">
                     <li class="nav-item">
-                        <a class="nav-link active" href="index.html">Cadastro</a>
+                        <a class="nav-link active fw-bold" href="index.html"><i class="fas fa-plus me-1"></i>Cadastro</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="consulta.html">Consulta</a>
+                        <a class="nav-link" href="consulta.html"><i class="fas fa-list me-1"></i>Consulta</a>
                     </li>
                 </ul>
             </div>
         </div>
     </nav>
 
-    <div class="container">
-        <!-- Título -->
-        <div class="row">
-            <div class="col mb-5">
-                <h1 class="display-4">Registro de nova despesa</h1>
+    <!-- Container fluido com padding mobile -->
+    <div class="container-fluid px-3 px-lg-4 pb-5">
+        <!-- Título responsivo -->
+        <div class="row mb-4 mb-lg-5">
+            <div class="col-12">
+                <h1 class="display-5 display-md-4 fw-bold text-primary mb-0">
+                    <i class="fas fa-wallet me-2"></i>Nova Despesa
+                </h1>
+                <small class="text-muted">Registre suas despesas rapidamente</small>
             </div>
         </div>
 
-        <!-- Filtros -->
-        <div class="row mb-2">
-            <div class="col-md-2">
-                <select class="form-select" id="ano">
+        <!-- Filtros - MOBILE: 2 por linha, DESKTOP: horizontal -->
+        <div class="row g-2 g-lg-3 mb-4">
+            <div class="col-6 col-md-3 col-lg-2">
+                <label class="form-label fw-bold small">Ano</label>
+                <select class="form-select form-select-sm" id="ano">
                     <option value="">Ano</option>
                     <option value="2026" selected>2026</option>
+                    <option value="2027">2027</option>
                 </select>
             </div>
-            <div class="col-md-2">
-                <select class="form-select" id="mes">
+            <div class="col-6 col-md-3 col-lg-2">
+                <label class="form-label fw-bold small">Mês</label>
+                <select class="form-select form-select-sm" id="mes">
                     <option value="">Mês</option>
                     <option value="1">Janeiro</option>
                     <option value="2">Fevereiro</option>
@@ -75,57 +86,64 @@
                     <option value="12">Dezembro</option>
                 </select>
             </div>
-            <div class="col-md-2">
-                <input type="number" class="form-control" placeholder="Dia" id="dia" min="1" max="31">
+            <div class="col-6 col-md-3 col-lg-2">
+                <label class="form-label fw-bold small">Dia</label>
+                <input type="number" class="form-control form-control-sm" placeholder="15" id="dia" min="1" max="31">
             </div>
-            <div class="col-md-6">
-                <select class="form-select" id="tipo">
-                    <option value="">Tipo</option>
-                    <option value="1">Alimentação</option>
-                    <option value="2">Contas da Casa</option>
-                    <option value="3">Lazer</option>
-                    <option value="4">Cartões</option>
-                    <option value="5">Motocicleta</option>
+            <div class="col-6 col-md-3 col-lg-6">
+                <label class="form-label fw-bold small">Tipo</label>
+                <select class="form-select form-select-sm" id="tipo">
+                    <option value="">Tipo de despesa</option>
+                    <option value="1">🍎 Alimentação</option>
+                    <option value="2">🏠 Contas da Casa</option>
+                    <option value="3">🎮 Lazer</option>
+                    <option value="4">💳 Cartões</option>
+                    <option value="5">🏍️ Motocicleta</option>
                 </select>
             </div>
         </div>
 
-        <!-- Formulário principal -->
-        <div class="row">
-            <div class="col-md-8">
-                <input type="text" class="form-control" placeholder="Descrição" id="descricao">
+        <!-- Formulário principal - FULL WIDTH mobile -->
+        <div class="row g-3">
+            <div class="col-12 col-lg-7">
+                <label class="form-label fw-bold">Descrição</label>
+                <input type="text" class="form-control form-control-lg" placeholder="Ex: Supermercado, Netflix..." id="descricao">
             </div>
-            <div class="col-md-2">
-                <input type="number" step="0.01" class="form-control" placeholder="0,00" id="valor">
+            <div class="col-6 col-lg-3">
+                <label class="form-label fw-bold">Valor</label>
+                <input type="number" step="0.01" class="form-control form-control-lg text-end" placeholder="0,00" id="valor">
             </div>
-            <div class="col-md-2 d-flex justify-content-end align-items-end">
-                <button type="button" class="btn btn-primary btn-lg" onclick="cadastrarDespesa()">
-                    <i class="fas fa-plus me-1"></i>Cadastrar
+            <div class="col-6 col-lg-2 d-flex align-items-end">
+                <button type="button" class="btn btn-primary btn-lg w-100 px-4 py-3 shadow-sm" onclick="cadastrarDespesa()">
+                    <i class="fas fa-plus-circle me-2"></i>
+                    Cadastrar
                 </button>
             </div>
         </div>
     </div>
 
-    <!-- Modal CORRIGIDO -->
+    <!-- Modal mobile-friendly -->
     <div class="modal fade" id="modalRegistrarDespesa" tabindex="-1" aria-labelledby="modal_titulo" aria-hidden="true">
-        <div class="modal-dialog">
+        <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-header" id="modal_titulo_div">
-                    <h1 class="modal-title fs-5" id="modal_titulo">Confirmar Despesa</h1>
+                    <h2 class="modal-title h5 mb-0" id="modal_titulo">
+                        <i class="fas fa-circle-check me-2 text-success"></i>Confirmar
+                    </h2>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <div class="modal-body" id="modal_conteudo">
+                <div class="modal-body p-4" id="modal_conteudo">
                     Conteúdo será preenchido aqui...
                 </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                    <button type="button" id="modal_btn" class="btn btn-primary">Confirmar</button>
+                <div class="modal-footer p-3">
+                    <button type="button" class="btn btn-outline-secondary px-4" data-bs-dismiss="modal">Cancelar</button>
+                    <button type="button" id="modal_btn" class="btn btn-primary px-4">Confirmar</button>
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- Bootstrap 5.3 JS Bundle (Popper + Bootstrap) -->
+    <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
