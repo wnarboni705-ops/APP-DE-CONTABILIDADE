@@ -2,7 +2,9 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <title>Orçamento pessoal - Consulta</title>
+    <!-- ✅ VIEWPORT MOBILE -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Orçamento Pessoal - Consulta Mobile</title>
 
     <!-- Bootstrap 5.3 CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -10,15 +12,16 @@
     <!-- Font Awesome 6 -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     
-    <script src="app.js"></script>
+    <script src="app.js" defer></script>
 </head>
 
 <body onload="carregaListaDespesa()">
-    <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg navbar-dark bg-primary mb-5">
-        <div class="container">
+    <!-- Navbar mobile -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary mb-3 mb-lg-5 px-3">
+        <div class="container-fluid">
             <a class="navbar-brand" href="#">
-                <img src="logo.png" width="50" height="35" alt="Orçamento pessoal">
+                <img src="logo.png" width="45" height="32" class="me-2" alt="Orçamento">
+                Orçamento
             </a>
             <button class="navbar-toggler" type="button" 
                     data-bs-toggle="collapse" 
@@ -31,34 +34,41 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto">
                     <li class="nav-item">
-                        <a class="nav-link" href="index.html">Cadastro</a>
+                        <a class="nav-link" href="index.html"><i class="fas fa-plus me-1"></i>Cadastro</a>
                     </li>
                     <li class="nav-item active">
-                        <a class="nav-link" href="consulta.html">Consulta</a>
+                        <a class="nav-link fw-bold" href="consulta.html"><i class="fas fa-list me-1"></i>Consulta</a>
                     </li>
                 </ul>
             </div>
         </div>
     </nav>
 
-    <div class="container">
-        <!-- Título -->
-        <div class="row mb-5">
-            <div class="col">
-                <h1 class="display-4">Consulta de despesas</h1>
+    <!-- Container fluido -->
+    <div class="container-fluid px-3 px-lg-4 pb-5">
+        <!-- Título responsivo -->
+        <div class="row mb-4 mb-lg-5">
+            <div class="col-12">
+                <h1 class="display-5 display-md-4 fw-bold text-primary mb-0">
+                    <i class="fas fa-chart-bar me-2"></i>Minhas Despesas
+                </h1>
+                <small class="text-muted">Filtre e gerencie suas despesas</small>
             </div>
         </div>
 
-        <!-- Filtros -->
-        <div class="row mb-2">
-            <div class="col-md-2">
-                <select class="form-select" id="ano">
+        <!-- Filtros - 2x2 mobile, horizontal desktop -->
+        <div class="row g-2 g-lg-3 mb-4">
+            <div class="col-6 col-md-2 col-lg-2">
+                <label class="form-label fw-bold small mb-1">Ano</label>
+                <select class="form-select form-select-sm" id="ano">
                     <option value="">Ano</option>
                     <option value="2026" selected>2026</option>
+                    <option value="2027">2027</option>
                 </select>
             </div>
-            <div class="col-md-2">
-                <select class="form-select" id="mes">
+            <div class="col-6 col-md-2 col-lg-2">
+                <label class="form-label fw-bold small mb-1">Mês</label>
+                <select class="form-select form-select-sm" id="mes">
                     <option value="">Mês</option>
                     <option value="1">Janeiro</option>
                     <option value="2">Fevereiro</option>
@@ -74,76 +84,83 @@
                     <option value="12">Dezembro</option>
                 </select>
             </div>
-            <div class="col-md-2">
-                <input type="number" class="form-control" placeholder="Dia" id="dia" min="1" max="31">
+            <div class="col-6 col-md-2 col-lg-1">
+                <label class="form-label fw-bold small mb-1">Dia</label>
+                <input type="number" class="form-control form-control-sm" placeholder="15" id="dia" min="1" max="31">
             </div>
-            <div class="col-md-6">
-                <select class="form-select" id="tipo">
+            <div class="col-6 col-md-3 col-lg-2">
+                <label class="form-label fw-bold small mb-1">Tipo</label>
+                <select class="form-select form-select-sm" id="tipo">
                     <option value="">Tipo</option>
-                    <option value="1">Alimentação</option>
-                    <option value="2">Contas da Casa</option>
-                    <option value="3">Lazer</option>
-                    <option value="4">Cartões</option>
-                    <option value="5">Motocicleta</option>
+                    <option value="1">🍎 Alimentação</option>
+                    <option value="2">🏠 Contas</option>
+                    <option value="3">🎮 Lazer</option>
+                    <option value="4">💳 Cartões</option>
+                    <option value="5">🏍️ Moto</option>
                 </select>
             </div>
+            <div class="col-12 col-md-3 col-lg-2">
+                <label class="form-label fw-bold small mb-1">Descrição</label>
+                <input type="text" class="form-control form-control-sm" placeholder="Filtrar..." id="descricao">
+            </div>
+            <div class="col-6 col-md-2 col-lg-2">
+                <label class="form-label fw-bold small mb-1">Valor ≥</label>
+                <input type="number" step="0.01" class="form-control form-control-sm text-end" placeholder="50" id="valor">
+            </div>
+            <div class="col-6 col-md-2 col-lg-1 d-flex align-items-end pt-1 pt-md-2">
+                <!-- Botões touch-friendly -->
+                <div class="w-100">
+                    <button type="button" class="btn btn-primary w-100 mb-1 mb-md-0 me-md-2" onclick="pesquisarDespesas()">
+                        <i class="fas fa-search"></i><br class="d-md-none"><small>Filtrar</small>
+                    </button>
+                    <button type="button" class="btn btn-outline-secondary w-100" onclick="limparFiltros()">
+                        <i class="fas fa-redo"></i><br class="d-md-none"><small>Limpar</small>
+                    </button>
+                </div>
+            </div>
         </div>
 
-        <!-- Campos de busca -->
-       
-    <div class="row mb-5">
-        <div class="col-md-8">
-            <input type="text" class="form-control" placeholder="Filtrar por descrição" id="descricao">
-        </div>
-    <div class="col-md-2">
-        <input type="number" step="0.01" class="form-control" placeholder="Valor mínimo" id="valor">
-    </div>
-    <!--  AQUI os botões corrigidos  -->
-    <div class="col-md-2 d-flex justify-content-end gap-2">
-        <button type="button" class="btn btn-primary" onclick="pesquisarDespesas()">
-            <i class="fas fa-search me-1"></i>Filtrar
-        </button>
-        <button type="button" class="btn btn-outline-secondary" onclick="limparFiltros()">
-            <i class="fas fa-redo me-1"></i>Limpar
-        </button>
-    </div>
-</div>
-
-        <!-- Tabela de resultados -->
+        <!-- Tabela CARD responsiva -->
         <div class="row">
-            <div class="col">
-                <div class="card">
-                    <div class="card-header d-flex justify-content-between align-items-center">
-                        <h5 class="mb-0"><i class="fas fa-list"></i> Despesas encontradas</h5>
-                        <span id="totalRegistros" class="badge bg-primary">0 registros</span>
+            <div class="col-12">
+                <div class="card shadow-sm">
+                    <div class="card-header bg-primary text-white d-flex justify-content-between align-items-center p-3">
+                        <h5 class="mb-0 fw-bold">
+                            <i class="fas fa-list me-2"></i>Despesas
+                        </h5>
+                        <span id="totalRegistros" class="badge bg-light text-dark fs-6">0 itens</span>
                     </div>
                     <div class="card-body p-0">
-                        <div class="table-responsive">
+                        <div class="table-responsive" style="height: 50vh;">
                             <table class="table table-hover mb-0">
-                                <thead class="table-dark">
+                                <thead class="table-dark sticky-top">
                                     <tr>
-                                        <th>Data</th>
-                                        <th>Tipo</th>
-                                        <th>Descrição</th>
-                                        <th class="text-end">Valor</th>
-                                        <th>Ações</th>
+                                        <th scope="col" class="col-2">Data</th>
+                                        <th scope="col" class="col-3">Tipo</th>
+                                        <th scope="col" class="col-4">Descrição</th>
+                                        <th scope="col" class="col-2 text-end">Valor</th>
+                                        <th scope="col" class="col-1">Ações</th>
                                     </tr>
                                 </thead>
                                 <tbody id="tabelaDespesas">
-                                    <!-- Resultados aqui -->
+                                    <!-- Preenchido pelo JS -->
                                 </tbody>
                             </table>
                         </div>
                     </div>
-                    <div class="card-footer text-end">
-                        <strong id="totalGasto">Total: R$ 0,00</strong>
+                    <div class="card-footer bg-light text-end p-3">
+                        <div class="h5 mb-0 fw-bold text-success">
+                            <i class="fas fa-coins me-1"></i>
+                            <span id="totalGasto">Total: R$ 0,00</span>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- Bootstrap 5.3 JS -->
+    <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
+
