@@ -1,2 +1,3 @@
 # APP-DE-CONTABILIDADE
 É UM APP DE TESTE PARA AUXILIAR NO MEU DIA A DIA.....
+onde eu posso adicionar contas ou até mesmo removelos, bom é uma interface bem simples de ser utilizada e bem intuitiva.
